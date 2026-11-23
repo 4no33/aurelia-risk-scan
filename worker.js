@@ -239,6 +239,19 @@ export default {
     if (url.pathname === "/health") {
       return Response.json({ ok: true, service: "aurelia-solana-risk-scan", price: "$0.05", network: "base", payTo: PAY_TO });
     }
+    if (url.pathname === "/.well-known/x402") {
+      return Response.json({
+        x402Version: 2,
+        resources: [
+          {
+            resource: `${url.origin}/scan`,
+            method: "GET",
+            description: DESCRIPTION,
+            accepts: [ACCEPTS],
+          },
+        ],
+      });
+    }
     if (url.pathname === "/") {
       return Response.json({
         service: "Aurelia Solana Risk Scan",
